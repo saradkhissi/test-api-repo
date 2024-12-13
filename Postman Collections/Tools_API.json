@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "1dfd0d57-fcbd-4ef8-ab42-be47e73a0e58",
-		"name": "1.test api order tools",
+		"name": "1.test api order tools with github",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
@@ -55,7 +55,7 @@
 			"response": []
 		},
 		{
-			"name": "Get tool by id",
+			"name": "Get tool by id test",
 			"event": [
 				{
 					"listen": "test",
