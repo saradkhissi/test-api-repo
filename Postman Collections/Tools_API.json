@@ -1,0 +1,499 @@
+{
+	"info": {
+		"_postman_id": "1dfd0d57-fcbd-4ef8-ab42-be47e73a0e58",
+		"name": "1.test api order tools",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "simple tool rental",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ab836ccd-6099-4754-93d0-4a6f43c1fa37",
+						"exec": [
+							"pm.test(\"status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "6a2923b2-882b-4bae-a010-2ecee0aee59b",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/tools",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"tools"
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "lawn-care",
+							"disabled": true
+						},
+						{
+							"key": "results",
+							"value": "test",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get tool by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cd4f4262-5322-4067-82a9-46495b442bb5",
+						"exec": [
+							"pm.test(\"status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "0504ecaf-c1d9-4ebc-bd33-fbb7fadbaf00",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/tools/:toolId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"tools",
+						":toolId"
+					],
+					"variable": [
+						{
+							"id": "7774c031-3dae-4327-80d7-b04cc23eed41",
+							"key": "toolId",
+							"value": "4643"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get tool not available",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b5aba2e0-fba4-4397-a7d4-60b7c9bc2c94",
+						"exec": [
+							"pm.test(\"status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "518447a2-6c00-4d2f-81ec-1054a36de508",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/tools?available=false",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"tools"
+					],
+					"query": [
+						{
+							"key": "available",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "new api client",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cdb3c986-a750-411e-a06c-d2924c78c2c1",
+						"exec": [
+							"pm.test(\"status code is 201\", function(){\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "5587959a-2a09-48df-ae33-fce19335369e",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"clientName\": \"saratest\",\r\n   \"clientEmail\": \"dkhissisara@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{baseUrl}}/api-clients"
+			},
+			"response": []
+		},
+		{
+			"name": "make an order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c27c9d60-ae53-4f3e-900d-e11f722b5dc7",
+						"exec": [
+							"//pm.test(\"status code is 201\", function(){\r",
+							"//    pm.response.to.have.status(201);\r",
+							"//});\r",
+							"const response = pm.response.json();\r",
+							"console.log(response.orderId);\r",
+							"pm.globals.set(\"orderId\",response.orderId);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "2d011c23-63d1-40b7-86d1-755a962debd8",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{apiToken}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"toolId\": 4643,\r\n \"customerName\": \"John Doe\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{baseUrl}}/orders"
+			},
+			"response": []
+		},
+		{
+			"name": "Get all orders made",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e6d472eb-a7da-4edf-b76f-7501bfdaf14c",
+						"exec": [
+							"pm.test(\"status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "4fa32b3a-05bf-4770-92fe-60043ef2d3b1",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{apiToken}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "{{baseUrl}}/orders"
+			},
+			"response": []
+		},
+		{
+			"name": "Get single order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9a97cb1c-289a-44a1-b826-a7253f4a174e",
+						"exec": [
+							"pm.test(\"status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "b823aa1b-fb8f-4e72-9da1-5fc0f9e07394",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{apiToken}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/orders/:orderId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"orders",
+						":orderId"
+					],
+					"variable": [
+						{
+							"id": "cde7c8e2-ebbe-4677-8fb2-00dad6d0c43c",
+							"key": "orderId",
+							"value": "eQR4k1ooOwT_WypUQVZsG"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c8ad8165-c6f9-4dd8-a093-3671587e93c2",
+						"exec": [
+							"pm.test(\"status code is 204\", function(){\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "a2308eba-2ee0-4756-b3b7-5d71c5d46259",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{apiToken}}"
+					}
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"customerName\": \"Joe Doe\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/orders/:orderId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"orders",
+						":orderId"
+					],
+					"variable": [
+						{
+							"id": "63d995ea-6fac-4dd8-b011-5cb55a594e72",
+							"key": "orderId",
+							"value": "PO9YqNogSgbYfn-jCXyGS"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5fdb48b2-710a-471a-adb7-9fe1af0ab7b3",
+						"exec": [
+							"pm.test(\"status code is 204\", function(){\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "27297872-a7dc-4f51-bcd8-47b92edc4c94",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{apiToken}}"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/orders/:orderId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"orders",
+						":orderId"
+					],
+					"variable": [
+						{
+							"id": "c0a654a3-c661-4cd7-8e34-8202a1d80566",
+							"key": "orderId",
+							"value": "eQR4k1ooOwT_WypUQVZsG"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "badc6991-30a3-4b8f-bbae-059481434fee",
+						"exec": [
+							"pm.test(\"status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Status is UP\",() => {\r",
+							"    const response =pm.response.json();\r",
+							"    console.log(response.statuts);\r",
+							"    console.log(response[\"status\"]);\r",
+							"    pm.expect(response.status).to.eql(\"UP\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "8f010b06-007b-431f-8026-c970907f69a7",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": ""
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "{{baseUrl}}/status"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "c1a28029-888c-4145-b16c-e63cee010f6d",
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "eb7dc95d-22d4-4014-bc2c-08c70e619760",
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://simple-tool-rental-api.glitch.me"
+		},
+		{
+			"key": "apiToken",
+			"value": "fixme",
+			"type": "string"
+		}
+	]
+}
