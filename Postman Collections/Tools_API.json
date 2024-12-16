@@ -302,9 +302,8 @@
 					],
 					"variable": [
 						{
-							"id": "cde7c8e2-ebbe-4677-8fb2-00dad6d0c43c",
 							"key": "orderId",
-							"value": "eQR4k1ooOwT_WypUQVZsG"
+							"value": "Gw3dVUDHB8p59cn4FulL-"
 						}
 					]
 				}
@@ -343,7 +342,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"customerName\": \"Joe Doe\"\r\n}",
+					"raw": "{\r\n    \"customerName\": \"Monday16\",\r\n    \"quantity\": 10\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -361,9 +360,8 @@
 					],
 					"variable": [
 						{
-							"id": "63d995ea-6fac-4dd8-b011-5cb55a594e72",
 							"key": "orderId",
-							"value": "PO9YqNogSgbYfn-jCXyGS"
+							"value": "Gw3dVUDHB8p59cn4FulL-"
 						}
 					]
 				}
